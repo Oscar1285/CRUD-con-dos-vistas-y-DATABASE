@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Leer Datos</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="modal.css">
+</head>
+<body>
+  <%- include('./partials/header') %>
+    <main>
+      <h3>Datos guardados</h3>
+      <div>
+        <% if (response.length===0) { %>
+            <h6>No hay datos!</h6>
+        <% } else {  %>
+            <ul>
+        <%  response.forEach( dato => { %>
+              <li>
+                <%= dato.id %> -
+                <%= dato.dato %>
+                <a href="#" id="<%= dato.id %>" class="borrarDato">Borrar</a>/
+                <a href="#" dato="<%= dato.dato %>" editID="<%= dato.id %>" class="myBtn">Editar</a>
+              </li>
+        <%  }); 
+          } %>
+          </ul>
+      </div>
+    </main>
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+      <!-- Modal content -->
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <form>
+          <input type="text"  placeholder="introduce un dato" id="editInput">
+          <input type="button" value="Actualizar!">
+        </form>
+      </div>
+    </div>
+    <script src="leerBorrarActDato.js"></script>
+    <script src="modal.js"></script>
+</body>
+</html>
